@@ -16,3 +16,5 @@ make && make install
 chkconfig iptables off
 service iptables stop
 
+echo "please run command:"
+echo "ss-server -s 0.0.0.0 -p 8388 -l 1080 -k password -m aes-256-cfb -t 600 -u"
