@@ -1,6 +1,14 @@
 #!/bin/bash
 
-yum -y install vim git gcc pcre-devel openssl-devel asciidoc xmlto man
+yum install vim gcc man gettext libtool automake make pcre-devel -y
+yum install asciidoc xmlto zlib-devel openssl-devel libsodium-devel udns-devel libev-devel -y
+
+wget http://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.gz
+tar -zxf autoconf-latest.tar.gz
+cd autoconf-latest
+./configure
+make && make install
+cd > /dev/null
 
 git config --global user.name "sunyong"
 git config --global user.email sunyongmofang@163.com
@@ -8,10 +16,17 @@ adduser worker -d /home/worker
 
 git clone https://github.com/shadowsocks/shadowsocks-libev.git
 git clone https://github.com/91yun/serverspeeder.git
+
+cd serverspeeder
+
+chmod 755 serverspeeder-all.sh
+./serverspeeder-all.sh
+
+cd > /dev/null
+
 cd shadowsocks-libev
 
-./configure
-make && make install
+./autogen.sh && ./configure && make && make install
 
 chkconfig iptables off
 service iptables stop
