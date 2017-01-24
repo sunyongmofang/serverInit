@@ -7,6 +7,7 @@ git config --global user.email sunyongmofang@163.com
 adduser worker -d /home/worker
 
 git clone https://github.com/shadowsocks/shadowsocks-libev.git
+git clone https://github.com/91yun/serverspeeder.git
 cd shadowsocks-libev
 
 ./configure
